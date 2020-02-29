@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block title %}
+    HOME
+{% endblock %}
+{% block main %}
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th colspan="2">{{ username }}</th>
+            <th colspan="2">{{ cash | usd }}</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Current Price</th>
+                <th>Actions</th>
+            </tr>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.symbol | upper }}</td>
+                <td>{{ stock.shares }}</td>
+                <td>{{ quote[stock.symbol]["price"] | usd }}</td>
+                <td>
+                    <form action="/buy" method="post">
+                        <div class="form-group">
+                            <input type="hidden" value="{{ stock.symbol }}" name="symbol">
+                            <input type="number" class="form-control-sm" required name="shares">
+                            <button class="btn btn-primary" type="submit">BUY</button>
+                        </div>
+                    </form>
+                    <form action="/sell" method="post">
+                        <input type="hidden" value="{{ stock.symbol }}" name="symbol">
+                        <input type="number" class="form-control-sm" required name="shares">
+                        <button class="btn btn-primary" type="submit">SELL</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3">TOTAL</th>
+                <th>{{ total | usd }}</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

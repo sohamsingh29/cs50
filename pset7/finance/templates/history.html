@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}
+    TRANSACTIONS
+{% endblock %}
+{% block main %}
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>SYMBOL</th>
+                <th>SHARES BOUGHT(+)/SOLD(-)</th>
+                <th>PRICE AT THAT TIME</th>
+                <th>TIME OF BUYING/SELLING</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.symbol }}</td>
+                    <td>{{ transaction.shares }}</td>
+                    <td>{{ transaction.purchase_sell_price }}</td>
+                    <td>{{ transaction.time_of_buying }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
