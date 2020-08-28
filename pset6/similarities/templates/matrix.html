@@ -1,0 +1,37 @@
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <% for s in s2 %>
+                <th>{{s}}</th>
+            <% endfor %>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <% for s in range((s2)|length+1) %>
+                <th>{{s}}</th>
+            <% endfor %>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th></th>
+            <th>0</th>
+            <% for i in (matrix[0]) %>
+                <th>{{ i[0] }}</th>
+            <% endfor %>
+        </tr>
+        <% for j in range(s1|length) %>
+        <tr>
+            <th>{{s1[j]}}</th>
+            <th>{{j+1}}</th>
+            <% for k in (matrix[j+1]) %>
+                <td>{{k[0]}}</td>
+            <% endfor %>
+        </tr>
+        <% endfor %>
+    </tbody>
+</table>
